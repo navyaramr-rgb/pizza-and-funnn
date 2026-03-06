@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pizza & Fun 🍕</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red: #E8321A;
+      --orange: #FF7B2E;
+      --yellow: #FFD93D;
+      --cream: #FFF8EE;
+      --brown: #3D1C02;
+      --green: #4CAF50;
+      --cheese: #F4B942;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--cream);
+      font-family: 'Nunito', sans-serif;
+      color: var(--brown);
+      overflow-x: hidden;
+    }
+
+    /* Polka dot background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(circle, #FFD93D33 2px, transparent 2px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ---- NAV ---- */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 40px;
+      background: var(--red);
+      box-shadow: 0 4px 0px var(--brown);
+    }
+
+    .nav-logo {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.8rem;
+      color: var(--yellow);
+      letter-spacing: 1px;
+      text-shadow: 2px 2px 0 var(--brown);
+    }
+
+    .nav-links { display: flex; gap: 24px; list-style: none; }
+    .nav-links a {
+      font-weight: 800;
+      color: #fff;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--yellow); }
+
+    /* ---- HERO ---- */
+    .hero {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 20px 60px;
+      overflow: hidden;
+    }
+
+    .hero-pizza {
+      font-size: 130px;
+      animation: spin-bob 4s ease-in-out infinite;
+      filter: drop-shadow(4px 8px 0px #E8321A88);
+      line-height: 1;
+    }
+
+    @keyframes spin-bob {
+      0%, 100% { transform: translateY(0) rotate(-5deg); }
+      50% { transform: translateY(-18px) rotate(5deg); }
+    }
+
+    .hero h1 {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      color: var(--red);
+      text-shadow: 4px 4px 0 var(--brown);
+      margin: 16px 0 10px;
+      line-height: 1.1;
+    }
+
+    .hero h1 span { color: var(--orange); }
+
+    .hero p {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--brown);
+      max-width: 500px;
+      opacity: 0.85;
+      margin-bottom: 36px;
+    }
+
+    .btn-group { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+
+    .btn {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.1rem;
+      padding: 14px 32px;
+      border: 3px solid var(--brown);
+      border-radius: 50px;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 4px 4px 0 var(--brown);
+    }
+    .btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--brown); }
+    .btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--brown); }
+
+    .btn-primary { background: var(--red); color: #fff; }
+    .btn-secondary { background: var(--yellow); color: var(--brown); }
+
+    /* Floating toppings */
+    .float-topping {
+      position: absolute;
+      font-size: 2.2rem;
+      animation: float-around 6s ease-in-out infinite;
+      pointer-events: none;
+      opacity: 0.7;
+    }
+    .ft1 { top: 12%; left: 6%; animation-delay: 0s; }
+    .ft2 { top: 20%; right: 8%; animation-delay: 1s; }
+    .ft3 { bottom: 22%; left: 10%; animation-delay: 2s; }
+    .ft4 { bottom: 15%; right: 6%; animation-delay: 0.5s; }
+    .ft5 { top: 55%; left: 3%; animation-delay: 1.5s; }
+    .ft6 { top: 40%; right: 4%; animation-delay: 2.5s; }
+
+    @keyframes float-around {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      33% { transform: translateY(-12px) rotate(10deg); }
+      66% { transform: translateY(6px) rotate(-8deg); }
+    }
+
+    /* ---- MENU SECTION ---- */
+    .section {
+      position: relative;
+      z-index: 1;
+      padding: 60px 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.4rem;
+      color: var(--red);
+      text-align: center;
+      margin-bottom: 8px;
+      text-shadow: 2px 2px 0 var(--brown);
+    }
+
+    .section-sub {
+      text-align: center;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--brown);
+      opacity: 0.7;
+      margin-bottom: 40px;
+    }
+
+    .pizza-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 28px;
+    }
+
+    .pizza-card {
+      background: #fff;
+      border: 3px solid var(--brown);
+      border-radius: 20px;
+      padding: 28px 20px 24px;
+      text-align: center;
+      box-shadow: 5px 5px 0 var(--brown);
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: default;
+    }
+    .pizza-card:hover {
+      transform: translate(-3px, -3px) rotate(-1deg);
+      box-shadow: 8px 8px 0 var(--red);
+    }
+
+    .pizza-card .emoji { font-size: 3.5rem; display: block; margin-bottom: 12px; }
+    .pizza-card h3 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.35rem;
+      color: var(--red);
+      margin-bottom: 6px;
+    }
+    .pizza-card p { font-size: 0.9rem; opacity: 0.75; margin-bottom: 14px; }
+    .price-tag {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--brown);
+      font-weight: 800;
+      font-size: 1rem;
+      padding: 5px 16px;
+      border-radius: 50px;
+      border: 2px solid var(--brown);
+    }
+
+    /* ---- FUN ZONE ---- */
+    .fun-zone {
+      background: var(--red);
+      border-top: 4px solid var(--brown);
+      border-bottom: 4px solid var(--brown);
+      padding: 60px 40px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .fun-zone::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 20px,
+        rgba(255,255,255,0.06) 20px,
+        rgba(255,255,255,0.06) 40px
+      );
+    }
+
+    .fun-zone h2 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.8rem;
+      color: var(--yellow);
+      text-shadow: 3px 3px 0 var(--brown);
+      margin-bottom: 12px;
+      position: relative;
+    }
+
+    .fun-zone p {
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 32px;
+      opacity: 0.9;
+      position: relative;
+    }
+
+    .fun-activities {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      position: relative;
+    }
+
+    .activity-badge {
+      background: #fff;
+      border: 3px solid var(--brown);
+      border-radius: 16px;
+      padding: 18px 22px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: var(--brown);
+      box-shadow: 4px 4px 0 var(--brown);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      min-width: 130px;
+      transition: transform 0.2s;
+    }
+    .activity-badge:hover { transform: scale(1.06) rotate(2deg); }
+    .activity-badge span { font-size: 2rem; }
+
+    /* ---- PIZZA BUILDER ---- */
+    .builder {
+      background: var(--cream);
+      padding: 60px 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .builder-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .toppings-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin: 28px 0;
+    }
+
+    .topping-btn {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 0.9rem;
+      padding: 10px 20px;
+      border: 2.5px solid var(--brown);
+      border-radius: 50px;
+      background: #fff;
+      cursor: pointer;
+      transition: all 0.15s;
+      box-shadow: 3px 3px 0 var(--brown);
+    }
+    .topping-btn:hover { background: var(--yellow); }
+    .topping-btn.selected { background: var(--red); color: #fff; box-shadow: 3px 3px 0 var(--brown); }
+
+    .pizza-preview {
+      font-size: 5rem;
+      margin: 10px 0;
+      display: block;
+      transition: transform 0.3s;
+    }
+    .pizza-preview.shake {
+      animation: shake 0.4s ease;
+    }
+    @keyframes shake {
+      0%, 100% { transform: rotate(0); }
+      25% { transform: rotate(-8deg) scale(1.1); }
+      75% { transform: rotate(8deg) scale(1.1); }
+    }
+
+    #order-result {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.3rem;
+      color: var(--green);
+      min-height: 36px;
+      margin-top: 10px;
+    }
+
+    /* ---- FOOTER ---- */
+    footer {
+      background: var(--brown);
+      color: var(--cream);
+      text-align: center;
+      padding: 28px 20px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      position: relative;
+      z-index: 1;
+    }
+    footer span { color: var(--yellow); }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 600px) {
+      nav { padding: 12px 20px; }
+      .section { padding: 40px 20px; }
+      .fun-zone { padding: 40px 20px; }
+      .builder { padding: 40px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">🍕 PizzaFun!</div>
+    <ul class="nav-links">
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#fun">Fun Zone</a></li>
+      <li><a href="#builder">Build</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="float-topping ft1">🫑</div>
+    <div class="float-topping ft2">🍄</div>
+    <div class="float-topping ft3">🧅</div>
+    <div class="float-topping ft4">🫒</div>
+    <div class="float-topping ft5">🌶️</div>
+    <div class="float-topping ft6">🧀</div>
+
+    <div class="hero-pizza">🍕</div>
+    <h1>Pizza <span>&amp;</span> Fun!</h1>
+    <p>The happiest slice in town. Great pizza, great vibes, great times — always.</p>
+    <div class="btn-group">
+      <a href="#menu" class="btn btn-primary">See Our Menu</a>
+      <a href="#builder" class="btn btn-secondary">Build Your Pizza</a>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section id="menu" class="section">
+    <h2 class="section-title">🍕 Our Pizzas</h2>
+    <p class="section-sub">Fresh dough. Real cheese. Ridiculous amounts of fun.</p>
+    <div class="pizza-grid">
+      <div class="pizza-card">
+        <span class="emoji">🧀</span>
+        <h3>Classic Margherita</h3>
+        <p>San Marzano tomato, fresh mozzarella, hand-torn basil</p>
+        <span class="price-tag">$12.99</span>
+      </div>
+      <div class="pizza-card">
+        <span class="emoji">🔥</span>
+        <h3>Spicy Diavola</h3>
+        <p>Hot salami, chili flakes, roasted red peppers, smoked mozzarella</p>
+        <span class="price-tag">$15.99</span>
+      </div>
+      <div class="pizza-card">
+        <span class="emoji">🍄</span>
+        <h3>Forest Shroom</h3>
+        <p>Wild mushrooms, truffle oil, gruyère, caramelized onion</p>
+        <span class="price-tag">$16.99</span>
+      </div>
+      <div class="pizza-card">
+        <span class="emoji">🍍</span>
+        <h3>Tropical Storm</h3>
+        <p>Pineapple, jalapeño, ham, gouda — yes, we went there</p>
+        <span class="price-tag">$14.99</span>
+      </div>
+      <div class="pizza-card">
+        <span class="emoji">🥓</span>
+        <h3>BBQ Bacon Bliss</h3>
+        <p>BBQ sauce, crispy bacon, corn, cheddar, red onion</p>
+        <span class="price-tag">$15.49</span>
+      </div>
+      <div class="pizza-card">
+        <span class="emoji">🌱</span>
+        <h3>Garden Party</h3>
+        <p>Zucchini, sun-dried tomato, arugula, goat cheese, pesto</p>
+        <span class="price-tag">$14.49</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUN ZONE -->
+  <section id="fun" class="fun-zone">
+    <h2>🎉 The Fun Zone</h2>
+    <p>Because pizza is always better with a side of shenanigans.</p>
+    <div class="fun-activities">
+      <div class="activity-badge"><span>🎮</span>Arcade Games</div>
+      <div class="activity-badge"><span>🎲</span>Board Games</div>
+      <div class="activity-badge"><span>🎵</span>Live Music</div>
+      <div class="activity-badge"><span>🏆</span>Pizza Contest</div>
+      <div class="activity-badge"><span>🎨</span>Topping Art</div>
+      <div class="activity-badge"><span>🎤</span>Karaoke Night</div>
+    </div>
+  </section>
+
+  <!-- PIZZA BUILDER -->
+  <section id="builder" class="builder">
+    <div class="builder-inner">
+      <h2 class="section-title">🛠️ Build Your Pizza</h2>
+      <p class="section-sub">Pick your toppings and dream big.</p>
+      <span class="pizza-preview" id="pizza-emoji">🍕</span>
+
+      <div class="toppings-grid" id="toppings">
+        <button class="topping-btn" data-topping="🧀 Cheese">🧀 Cheese</button>
+        <button class="topping-btn" data-topping="🍄 Mushrooms">🍄 Mushrooms</button>
+        <button class="topping-btn" data-topping="🫑 Peppers">🫑 Peppers</button>
+        <button class="topping-btn" data-topping="🌶️ Chili">🌶️ Chili</button>
+        <button class="topping-btn" data-topping="🫒 Olives">🫒 Olives</button>
+        <button class="topping-btn" data-topping="🥓 Bacon">🥓 Bacon</button>
+        <button class="topping-btn" data-topping="🍍 Pineapple">🍍 Pineapple</button>
+        <button class="topping-btn" data-topping="🧅 Onions">🧅 Onions</button>
+        <button class="topping-btn" data-topping="🌿 Basil">🌿 Basil</button>
+        <button class="topping-btn" data-topping="🥩 Pepperoni">🥩 Pepperoni</button>
+      </div>
+
+      <button class="btn btn-primary" id="order-btn" onclick="orderPizza()">Order It! 🍕</button>
+      <p id="order-result"></p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Made with <span>❤️</span> and a ridiculous amount of cheese &nbsp;|&nbsp; 🍕 PizzaFun! &copy; 2026</p>
+  </footer>
+
+  <script>
+    // Topping toggle
+    document.querySelectorAll('.topping-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.classList.toggle('selected');
+        const pizza = document.getElementById('pizza-emoji');
+        pizza.classList.remove('shake');
+        void pizza.offsetWidth;
+        pizza.classList.add('shake');
+      });
+    });
+
+    function orderPizza() {
+      const selected = [...document.querySelectorAll('.topping-btn.selected')]
+        .map(b => b.dataset.topping);
+      const result = document.getElementById('order-result');
+      if (selected.length === 0) {
+        result.style.color = '#E8321A';
+        result.textContent = '⚠️ Pick at least one topping first!';
+        return;
+      }
+      result.style.color = '#4CAF50';
+      result.textContent = `🎉 Order placed: ${selected.join(', ')}! Coming right up!`;
+    }
+  </script>
+</body>
+</html>
